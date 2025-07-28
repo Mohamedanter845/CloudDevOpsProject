@@ -16,6 +16,14 @@
   This project represents the culmination of the DevOps training at the National Telecommunication Institute (NTI),
   in partnership with iVolve Technologies. 
 </p>
+---
 
+## ✅ Containerization with Docker
+
+- Dockerfile created to containerize the Flask application.
+- Image built successfully: `final-app:latest`.
+- Docker image pushed to Docker Hub: [`mohamedanter845/flask-app`](https://hub.docker.com/repository/docker/mohamedanter845/flask-app).
+- Container tested and working locally via port `5000`
+```
 ---
 
