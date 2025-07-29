@@ -41,8 +41,9 @@ In this step, we manually deployed the backend application on a **self-managed K
 - We applied the manifest using:
 
   ```bash
-  kubectl apply -f backend/backend-deployment.yaml
+  kubectl apply -f backend/backend-deployment.yml
 
+-------
 After applying:
 
 The backend pod was scheduled to run on node1
@@ -51,4 +52,4 @@ The NodePort service exposed the app on port 30007
 
 We verified the deployment by running curl on node1 and got a proper response
 
-<div align="center"> <img src="images/node1.PNG" alt="Node1 Terminal Output" width="600"> </div> ```
+<div align="center"> <img src="images/node1.PNG" alt="Node1 Terminal Output" width="600"> </div> 
