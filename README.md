@@ -52,4 +52,5 @@ The NodePort service exposed the app on port 30007
 We verified the deployment by running curl on node1 and got a proper response
 
 
-![Backend app running on node1 using NodePort](./images/node1.PNG)
+![Backend app running on node1 using NodePort](images/node1.PNG)
+
