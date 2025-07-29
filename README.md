@@ -27,3 +27,32 @@
 ```
 ---
 
+## ✅ Step 3: Deploy Backend App on Kubernetes Cluster (NodePort Service)
+
+In this step, we manually deployed the backend application on a **self-managed Kubernetes cluster** using a combined manifest file that includes both the **Deployment** and the **NodePort Service**.
+
+- The manifest file is located at:  
+  `backend/backend-deployment.yaml`
+  
+- This file includes:
+  - 🧱 `Deployment`: to manage the backend pod(s)
+  - 🌐 `Service` of type `NodePort`: to expose the app internally across cluster nodes
+
+- We applied the manifest using:
+
+  ```bash
+  kubectl apply -f backend/backend-deployment.yaml
+
+After applying:
+
+The backend pod was scheduled to run on node1
+
+The NodePort service exposed the app on port 30007
+
+We verified the deployment by running curl on node1 and got a proper response
+
+❌ The app was not accessible from the master node — which is expected, as NodePort only listens on the node’s IP
+
+📸 Backend Service Running on node1:
+
+<p align="center"> <img src="images/node1.PNG" alt="Backend app running on node1 using NodePort" width="700"/> </p> ```
