@@ -52,5 +52,5 @@ The NodePort service exposed the app on port 30007
 
 We verified the deployment by running curl on node1 and got a proper response
 
-<img src="{{ url_for('static', filename='images/node1.PNG') }}" alt="Node1 Output">
+<img src="https://raw.githubusercontent.com/Mohamedanter845/CloudDevOpsProject/main/FinalProject/static/images/node1.PNG" alt="Node1 Output">
 
