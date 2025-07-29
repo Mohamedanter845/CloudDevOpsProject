@@ -52,6 +52,4 @@ The NodePort service exposed the app on port 30007
 We verified the deployment by running curl on node1 and got a proper response
 
 
-<p align="center">
-  <img src="images/node1.PNG" alt="Backend app running on node1 using NodePort" width="700"/>
-</p>
+![Backend app running on node1 using NodePort](./images/node1.PNG)
