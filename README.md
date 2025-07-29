@@ -51,8 +51,7 @@ The NodePort service exposed the app on port 30007
 
 We verified the deployment by running curl on node1 and got a proper response
 
-❌ The app was not accessible from the master node — which is expected, as NodePort only listens on the node’s IP
 
-📸 Backend Service Running on node1:
-
-<p align="center"> <img src="images/node1.PNG" alt="Backend app running on node1 using NodePort" width="700"/> </p> ```
+<p align="center">
+  <img src="images/node1.PNG" alt="Backend app running on node1 using NodePort" width="700"/>
+</p>
