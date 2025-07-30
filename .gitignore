@@ -1,0 +1,22 @@
+# Node modules
+node_modules/
+
+# Terraform files
+.terraform/
+*.tfstate
+*.tfstate.backup
+crash.log
+*.tfvars
+
+# System files
+.DS_Store
+
+# Logs
+*.log
+
+# AWS credentials 
+*.pem
+
+# Python cache
+__pycache__/
+*.py[cod]
