@@ -5,7 +5,7 @@ def call() {
         environment {
             IMAGE_NAME = "my-app-image"
             IMAGE_TAG = "v1.0.${BUILD_NUMBER}"
-            DOCKER_REGISTRY = "your-dockerhub-username"
+            DOCKER_REGISTRY = "mohamedanter845"
         }
 
         stages {
