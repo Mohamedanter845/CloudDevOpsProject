@@ -1,0 +1,3 @@
+---
+# defaults file for roles/docker
+docker_package: docker.io

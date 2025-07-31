@@ -1,0 +1,15 @@
+---
+galaxy_info:
+  author: Mohamed Anter
+  description: Install Git
+  company: your_company
+  license: MIT
+  min_ansible_version: 2.9
+  platforms:
+    - name: Ubuntu
+      versions:
+        - focal
+        - jammy
+  categories:
+    - version-control
+

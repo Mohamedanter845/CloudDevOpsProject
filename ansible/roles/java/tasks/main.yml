@@ -1,0 +1,17 @@
+---
+# tasks file for roles/java
+- name: Install Java
+  apt:
+    name: "{{ java_package }}"
+    state: present
+    update_cache: yes
+  become: yes
+
+- name: Verify Java installation
+  command: java -version
+  register: java_version_output
+  ignore_errors: yes
+
+- name: Show Java version
+  debug:
+    var: java_version_output.stderr_lines

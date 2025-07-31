@@ -1,0 +1,47 @@
+---
+# tasks file for roles/docker
+- name: Update apt
+  apt:
+    update_cache: yes
+  become: true
+
+- name: Install required packages
+  apt:
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg
+      - lsb-release
+    state: present
+  become: true
+
+- name: Add Docker’s official GPG key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+  become: true
+
+- name: Add Docker APT repository
+  apt_repository:
+    repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
+    state: present
+  become: true
+
+- name: Update apt again
+  apt:
+    update_cache: yes
+  become: true
+
+- name: Install Docker
+  apt:
+    name: "{{ docker_package }}"
+    state: latest
+  become: true
+
+- name: Enable and start Docker service
+  service:
+    name: docker
+    enabled: true
+    state: started
+  become: true

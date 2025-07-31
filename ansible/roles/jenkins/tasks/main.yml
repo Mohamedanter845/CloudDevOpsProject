@@ -1,0 +1,41 @@
+---
+- name: Add Jenkins repository key
+  apt_key:
+    url: https://pkg.jenkins.io/debian/jenkins.io-2023.key
+    state: present
+
+- name: Add Jenkins repository
+  apt_repository:
+    repo: "deb https://pkg.jenkins.io/debian binary/"
+    state: present
+    filename: jenkins
+
+- name: Update apt cache
+  apt:
+    update_cache: yes
+
+- name: Install required packages for Jenkins
+  apt:
+    name:
+      - fontconfig
+      - openjdk-17-jre
+    state: present
+
+- name: Install Jenkins
+  apt:
+    name: jenkins
+    state: present
+
+- name: Ensure Jenkins is started and enabled
+  systemd:
+    name: jenkins
+    state: started
+    enabled: yes
+  register: jenkins_service
+  ignore_errors: true
+
+- name: Debug if Jenkins failed to start
+  debug:
+    var: jenkins_service
+  when: jenkins_service.failed
+

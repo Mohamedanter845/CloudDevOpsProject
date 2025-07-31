@@ -1,0 +1,8 @@
+- name: Configure Jenkins Slave
+  hosts: jenkins_slaves
+  become: yes
+
+  roles:
+    - docker
+    - git
+    - java

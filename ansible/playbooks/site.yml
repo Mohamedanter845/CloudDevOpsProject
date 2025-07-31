@@ -1,0 +1,3 @@
+- import_playbook: jenkins-master.yml
+- import_playbook: jenkins-slave.yml
+
