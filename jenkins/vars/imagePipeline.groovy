@@ -5,29 +5,30 @@ def call() {
         environment {
             IMAGE_NAME = "my-app-image"
             IMAGE_TAG = "v1.0.${BUILD_NUMBER}"
-            DOCKER_REGISTRY = "mohamedanter845"
+            DOCKER_REGISTRY = "docker.io/mohamedanter845"
         }
 
         stages {
             stage('Build Image') {
                 steps {
                     script {
-                        sh 'docker build -t $DOCKER_REGISTRY/$IMAGE_NAME:$IMAGE_TAG .'
+                        sh "docker build -t ${DOCKER_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG} ."
                     }
                 }
             }
 
-            stage('Scan Image') {
+            stage('Login to DockerHub') {
                 steps {
-                    echo '🔍 Scanning Docker Image (placeholder for security scan)'
-                    
+                    withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                        sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
+                    }
                 }
             }
 
             stage('Push Image') {
                 steps {
                     script {
-                        sh 'docker push $DOCKER_REGISTRY/$IMAGE_NAME:$IMAGE_TAG'
+                        sh "docker push ${DOCKER_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}"
                     }
                 }
             }
@@ -35,7 +36,7 @@ def call() {
             stage('Delete Local Image') {
                 steps {
                     script {
-                        sh 'docker rmi $DOCKER_REGISTRY/$IMAGE_NAME:$IMAGE_TAG || true'
+                        sh "docker rmi ${DOCKER_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG} || true"
                     }
                 }
             }
@@ -43,9 +44,7 @@ def call() {
             stage('Update K8s Manifests') {
                 steps {
                     script {
-                        sh """
-                        sed -i 's|image:.*|image: $DOCKER_REGISTRY/$IMAGE_NAME:$IMAGE_TAG|' backend-deployment.yaml
-                        """
+                        sh "sed -i 's|image:.*|image: ${DOCKER_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}|' backend-deployment.yaml"
                     }
                 }
             }
@@ -60,3 +59,4 @@ def call() {
         }
     }
 }
+
