@@ -72,7 +72,7 @@ Checked the AWS Console to confirm:
 
 
 - CloudWatch alarms were set up.
-![Alt text](assets/Cloudwatch(2).png)
+![Alt text](assets/Cloudwatch.png)
 🛠️ Technologies Used
 ```bash
 AWS EC2, VPC, S3, DynamoDB
