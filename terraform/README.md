@@ -27,7 +27,7 @@ We provisioned a custom infrastructure on AWS that includes:
 ## 🖼️ Architecture Diagram
 
 <p align="center">
-  <img src="./static/images/terraform.PNG" alt="Terraform " width="700"/>
+  <img src="assets/terraform.png" alt="Terraform " width="700"/>
 </p>
 ---
 
@@ -63,7 +63,7 @@ terraform apply
 ### 5. Verified AWS Resources
 Checked the AWS Console to confirm:
 - VPC and subnet were created.
-![Alt text](./static/images/terraform2.PNG)
+![Alt text](assets/terraform2.PNG)
 
 
 🛠️ Technologies Used
