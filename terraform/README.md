@@ -60,12 +60,19 @@ terraform plan
 terraform apply
 ```
 
-### 5. Verified AWS Resources
+# Verified AWS Resources
 Checked the AWS Console to confirm:
 - VPC and subnet were created.
 ![Alt text](assets/terraform2.PNG)
 
+- EC2 instances were running.
+![Alt text](assets/aws-view.PNG)
 
+
+
+
+- CloudWatch alarms were set up.
+![Alt text](assets/Cloudwatch(2).png)
 🛠️ Technologies Used
 ```bash
 AWS EC2, VPC, S3, DynamoDB
@@ -81,3 +88,10 @@ Jenkins (planned for CI/CD layer)
 ```
 ---------------------------------------------
 
+## Destroy Infrastructure
+
+To remove all resources:
+
+```bash
+terraform destroy
+```
