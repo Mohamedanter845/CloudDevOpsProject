@@ -11,45 +11,95 @@
 <h3 align="center" style="font-family: 'Poppins', sans-serif; color: #b0bec5;">
   In Collaboration with iVolve Technologies
 </h3>
-
-<p align="center" style="max-width: 700px; font-size: 1.1rem; color: #cfd8dc;">
-  This project represents the culmination of the DevOps training at the National Telecommunication Institute (NTI),
-  in partnership with iVolve Technologies. 
-</p>
 ---
 
-## ✅ Containerization with Docker
 
-- Dockerfile created to containerize the Flask application.
-- Image built successfully: `final-app:latest`.
-- Docker image pushed to Docker Hub: [`mohamedanter845/flask-app`](https://hub.docker.com/repository/docker/mohamedanter845/flask-app).
-- Container tested and working locally via port `5000`
-```
+# 🚀 DevOps CI/CD Infrastructure Project
+
+A complete infrastructure to implement DevOps practices using modern tools such as Terraform, Ansible, Jenkins, ArgoCD, and Kubernetes. The goal of this project is to build a scalable system that automates CI/CD pipelines for containerized applications on AWS.
+
+---
+![Alt text](static/logos/devops.drawio.png)
+
+---
+## 🧱 Project Components
+
+### 🔧 1. AWS Infrastructure with Terraform
+- Custom VPC setup with subnets.
+- EC2 Instances:
+  - One for Jenkins Master.
+  - One for Jenkins Agent (Worker).
+- Proper IAM roles, Security Groups, and networking configuration.
+- S3 and DynamoDB used as Remote Backend for Terraform state management.
+
 ---
 
-## ✅ Step 3: Deploy Backend App on Kubernetes Cluster (NodePort Service)
+### ⚙️ 2. Server Configuration with Ansible
+- Jenkins Master installation and setup.
+- Jenkins Agent configuration to handle builds.
+- Kubernetes cluster setup using `kubeadm` on the EC2 instances.
 
-In this step, we manually deployed the backend application on a **self-managed Kubernetes cluster** using a combined manifest file that includes both the **Deployment** and the **NodePort Service**.
+---
 
-- The manifest file is located at:  
-  `backend/backend-deployment.yaml`
-  
-- This file includes:
-  - 🧱 `Deployment`: to manage the backend pod(s)
-  - 🌐 `Service` of type `NodePort`: to expose the app internally across cluster nodes
+### 🔄 3. CI/CD Pipeline with Jenkins
+- When code is pushed to GitHub:
+  - Jenkins detects changes automatically.
+  - Pipeline is triggered:
+    - Runs basic unit tests.
+    - Builds a new Docker image.
+    - Pushes the image to a container registry.
+    - Updates Kubernetes manifests.
+    - Pushes updated YAML files back to GitHub.
 
-- We applied the manifest using:
+---
 
-```bash
-kubectl apply -f backend/backend-deployment.yaml
+### 🌐 4. Continuous Deployment with ArgoCD
+- ArgoCD continuously watches the GitHub repository.
+- Any change in Kubernetes manifests is automatically synced with the Kubernetes cluster.
+- Ensures the live state always matches the desired state from Git.
+
+---
+
+### ☸️ 5. Kubernetes Cluster (kubeadm)
+- One master node and one worker node.
+- The application is deployed using YAML manifest files.
+- A dedicated Namespace is used for application resources to keep things organized.
+
+---
+
+## 📦 Tools & Technologies
+| Tool        | Purpose |
+|-------------|---------|
+| **Terraform** | Infrastructure as Code for AWS provisioning |
+| **Ansible**   | Server setup and configuration automation |
+| **Jenkins**   | CI/CD pipeline orchestration |
+| **Docker**    | Containerization of the application |
+| **Kubernetes**| Deployment and management of application workloads |
+| **ArgoCD**    | GitOps-based Continuous Deployment |
+
+---
+
+## 📁 Project Structure
+```
+.
+├── terraform/         # Infrastructure as Code with Terraform
+├── Ansible/           # Playbooks and roles for server configuration
+├── Jenkins/           # Jenkinsfile and pipeline setup
+├── app/               # Application source code + Dockerfile
+├── k8s-manifests/     # Kubernetes deployment YAML files
+├── ArgoCD/            # ArgoCD application definitions
+└── README.md
 ```
 
-After applying:
+---
 
-- ✅ The backend pod was scheduled to run on node1  
-- 🌐 The NodePort service exposed the app on port `30007`  
-- 📡 We verified the deployment by running `curl` on node1 and got a proper response  
-
-<p align="center">
-  <img src="static/images/node1.PNG" alt="Node1 Output" width="700"/>
-</p>
+## 📝 Prerequisites
+- An active AWS account with sufficient permissions
+- Docker and Git installed locally
+- Basic understanding of the following tools:
+  - Terraform
+  - Ansible
+  - Jenkins
+  - Kubernetes
+  - GitOps and ArgoCD
+BY MOHAMED ANTER
