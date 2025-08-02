@@ -11,10 +11,10 @@ module "network" {
 module "server" {
   source        = "./modules/server"
   subnet_id     = module.network.public_subnet_id
-  ami           = var.ami   
+  ami           = var.ami
   instance_type = var.instance_type
   ami_id        = var.ami_id
   key_name      = var.key_name
-  vpc_id        = module.network.vpc_id            
+  vpc_id        = module.network.vpc_id
 
 }

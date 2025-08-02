@@ -17,13 +17,17 @@ We provisioned a custom infrastructure on AWS that includes:
 - Modular code using:
   - `network` module (for VPC, subnets, IGW)
   - `server` module (for EC2 instances and SGs)
+--- CloudWatch Integration
+- Sets up CloudWatch dashboard to monitor EC2 instances
+- Creates CloudWatch alarms for high CPU utilization
+- Configures SNS topic for alarm notifications
 
 ---
 
 ## 🖼️ Architecture Diagram
 
 <p align="center">
-  <img src="static/images/terraform.PNG" alt="Terraform " width="700"/>
+  <img src="./static/images/terraform.PNG" alt="Terraform " width="700"/>
 </p>
 ---
 
@@ -55,6 +59,13 @@ terraform init -reconfigure
 terraform plan
 terraform apply
 ```
+
+### 5. Verified AWS Resources
+Checked the AWS Console to confirm:
+- VPC and subnet were created.
+![Alt text](./static/images/terraform2.PNG)
+
+
 🛠️ Technologies Used
 ```bash
 AWS EC2, VPC, S3, DynamoDB

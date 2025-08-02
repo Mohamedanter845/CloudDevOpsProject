@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: final-project
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/Mohamedanter845/CloudDevOpsProject.git
+    targetRevision: HEAD
+    path: FinalProject
+    directory:
+      recurse: true
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
