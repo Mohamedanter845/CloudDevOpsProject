@@ -1,3 +1,62 @@
 @Library('shared_library') _
 
-imagePipeline()
+pipeline {
+    agent any
+
+    environment {
+        IMAGE_NAME = "my-app-image"
+        IMAGE_TAG = "v1.0.${BUILD_NUMBER}"
+        DOCKER_REGISTRY = "docker.io/mohamedanter845"
+    }
+
+    stages {
+        stage('Build Image') {
+            steps {
+                script {
+                    buildImage(DOCKER_REGISTRY, IMAGE_NAME, IMAGE_TAG)
+                }
+            }
+        }
+
+        stage('Login to DockerHub') {
+            steps {
+                script {
+                    loginToDockerHub()
+                }
+            }
+        }
+
+        stage('Push Image') {
+            steps {
+                script {
+                    pushImage(DOCKER_REGISTRY, IMAGE_NAME, IMAGE_TAG)
+                }
+            }
+        }
+
+        stage('Delete Local Image') {
+            steps {
+                script {
+                    deleteImage(DOCKER_REGISTRY, IMAGE_NAME, IMAGE_TAG)
+                }
+            }
+        }
+
+        stage('Update K8s Manifests') {
+            steps {
+                script {
+                    updateManifests(DOCKER_REGISTRY, IMAGE_NAME, IMAGE_TAG)
+                }
+            }
+        }
+
+        stage('Push Updated Manifests') {
+            steps {
+                script {
+                    pushManifests()
+                }
+            }
+        }
+    }
+}
+
